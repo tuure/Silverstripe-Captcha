@@ -18,14 +18,14 @@ class CustomCaptchaField extends SpamProtectorField {
 
 	// FORM INPUT CONSTRUCTION
 	
-	function Field() {
+	function Field($parameters = array()) {
 		$attributes = array(
 			'type' => 'text',
 			'class' => 'CustomCaptchaField',
 			'id' => $this->id(),
-			'name' => $this->Name(),
+			'name' => $this->getName(),
 			'value' => $this->Value(),
-			'tabindex' => $this->getTabIndex(),
+			'tabindex' => $this->getAttribute('tabindex'),
 			'maxlength' => 5,
 			'size' => 30
 		);
