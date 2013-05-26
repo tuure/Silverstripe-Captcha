@@ -34,17 +34,20 @@ class CustomCaptchaField extends SpamProtectorField {
 		$html =  '<img src='.$_SESSION['captcha']['image_src'].'" class="customcaptcha-image" alt="CAPTCHA security code" />';
 		
 		// include javascript behaviours
-		$html .= '<script type="text/javascript" src="customcaptcha/js/effects.js"></script>';
+		#$html .= '<script type="text/javascript" src="captcha/js/effects.js"></script>';
 		
 		// parse SHA256'd code to javascript
 		$html .= '<script type="text/javascript">var customCaptchaCode = "'.hash('sha256',$_SESSION['captcha']['code']).'";</script>';
 		
 		// create input field
 		$html .= $this->createTag('input', $attributes);
+		#$html .= $this->renderFieldTemplate();
 		
 		// parse captcha code into CustomCaptcha session
 		$_SESSION['customcaptcha'] = $_SESSION['captcha']['code'];
-		
+
+
+		Requirements::javascript( 'captcha/js/effects.js' );
 		// return html
 		return $html;
 			
