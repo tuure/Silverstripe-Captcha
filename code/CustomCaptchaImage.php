@@ -6,6 +6,12 @@
 //
 //	http://abeautifulsite.net/blog/2011/01/a-simple-php-captcha-script/
 //
+session_start();
+	
+$captcha_config = unserialize($_SESSION['_CAPTCHA']['config']);
+unset($_SESSION['_CAPTCHA']);
+
+
 function captcha($config = array()) {
 	
 	// Check for GD library
@@ -95,10 +101,7 @@ if( !function_exists('hex2rgb') ) {
 // Draw the image
 if( isset($_GET['_CAPTCHA']) ) {
 	
-	session_start();
 	
-	$captcha_config = unserialize($_SESSION['_CAPTCHA']['config']);
-	unset($_SESSION['_CAPTCHA']);
 	
 	// Use milliseconds instead of seconds
 	srand(microtime() * 100);
