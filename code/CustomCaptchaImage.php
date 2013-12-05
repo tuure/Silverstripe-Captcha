@@ -6,10 +6,12 @@
 //
 //	http://abeautifulsite.net/blog/2011/01/a-simple-php-captcha-script/
 //
-session_start();
-	
-$captcha_config = unserialize($_SESSION['_CAPTCHA']['config']);
-unset($_SESSION['_CAPTCHA']);
+if( isset($_GET['_CAPTCHA']) ) {
+  session_start();
+
+  $captcha_config = unserialize($_SESSION['_CAPTCHA']['config']);
+  unset($_SESSION['_CAPTCHA']);
+}
 
 
 function captcha($config = array()) {
